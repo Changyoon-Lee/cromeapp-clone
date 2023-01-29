@@ -18,7 +18,7 @@ const onMouseDown = (event) => {
   if (event.which !== 1) {
     return;
   }
-  
+
   textarea.style.zIndex = variables.zIndex;
   const offsetX = event.offsetX;
   const offsetY = event.offsetY;
@@ -30,11 +30,11 @@ const onMouseDown = (event) => {
   function onMouseMove(event) {
     moveAt(event.clientX, event.clientY);
   }
-  
+
   // (2) mousemove로 공을 움직입니다.
   // 여기를 document객체로 두지 않고 요소(ex textarea~)로 두고하면 빠르게 마우스 커서 움직일때 eventlistener 가 먹통이 되버림
   document.addEventListener("mousemove", onMouseMove);
-  
+
   // 불필요한 핸들러를 제거합니다.
   document.onmouseup = function () {
     locationInfo[memoKey] = { left: textarea.style.left, top: textarea.style.top };
@@ -72,7 +72,7 @@ const deleteMemo = (event) => {
   const memoId = memoDiv.id;
   memoDiv.remove()
   localStorage.removeItem(memoId);
-  
+
   delete locationInfo[memoId]
   saveLocationInfo()
 }
@@ -111,7 +111,7 @@ class MemoClassObj {
     this.ul = this.memoDiv.querySelector(`ul`);
     this.savedToDos = localStorage.getItem(memoKey);
     if (!memoList[memoKey]) {
-      
+
       memoList[memoKey] = {};
     }
     this.toDoObj = memoList[memoKey];//이게 pointer를 가져옴
@@ -124,29 +124,29 @@ class MemoClassObj {
     //toDoObj에 추가해주고, li 추가 해주는 작업
     toDoKey = toDoKey ? toDoKey : Object.keys(this.toDoObj).length;//toDoKey가 없으면 autoincrement
     this.toDoObj[toDoKey] = toDo;
-    
+
     const liElement = lineElement(toDoKey, toDo);
     const confirmButton = liElement.querySelector("i:first-of-type");
     confirmButton.addEventListener("click", (event) => this.modifyToDo(event));
     const textInput = liElement.querySelector(".textarea-div");
-    
+
     textInput.addEventListener("keydown", (event) => {
       if (event.keyCode == 13) {
         event.target.blur();
         event.preventDefault();//앤터키 동작안되도록 설정
         confirmButton.click();// 버튼 클릭 동작시킴
-        
+
       }
     })
     const deleteButton = liElement.querySelector("i:last-of-type");
     deleteButton.addEventListener("click", (event) => this.deleteToDo(event));
     this.ul.appendChild(liElement);
     if (!loading) {
-      
+
       this.saveToDos();
     }
   }
-  
+
   saveToDos() {
     localStorage.setItem(this.memoKey, JSON.stringify(this.toDoObj));
   }
@@ -158,11 +158,11 @@ class MemoClassObj {
     }
   }
   deleteToDo(event) {
-    
+
     const li = event.target.parentElement;
     const toDoKey = li.key;
-    
-    
+
+
     li.remove();
     delete memoList[this.memoKey][toDoKey];
     this.saveToDos();
@@ -177,12 +177,12 @@ class MemoClassObj {
   }
   setLocation() {
     console.log(locationInfo);
-      if (Object.keys(locationInfo).length && locationInfo[this.memoKey] && Object.keys(locationInfo[this.memoKey]).length) {
-        this.memoDiv.style.top = locationInfo[this.memoKey].top;
-        this.memoDiv.style.left = locationInfo[this.memoKey].left;
-        console.log(locationInfo[this.memoKey].top,locationInfo[this.memoKey].left)
-      }
-    
+    if (Object.keys(locationInfo).length && locationInfo[this.memoKey] && Object.keys(locationInfo[this.memoKey]).length) {
+      this.memoDiv.style.top = locationInfo[this.memoKey].top;
+      this.memoDiv.style.left = locationInfo[this.memoKey].left;
+      console.log(locationInfo[this.memoKey].top, locationInfo[this.memoKey].left)
+    }
+
   }
 }
 
@@ -191,7 +191,7 @@ const loadUserData = (userName) => {
   //2. 루프를 돌면서 하나씩 메모를 로딩시켜준다. (memoList에 추가도해줘)
   locationInfo = loadLocationInfo(userName);
   for (const memoKey in localStorage) {//이렇게 for문 돌리면 안에 함수까지 다나오네.. 노답
-    
+
     if (memoKey.startsWith(userName)) {
       console.log("기존데이터 로딩", memoKey);
       memoObjectGroup[memoKey] = new MemoClassObj(memoKey);
@@ -202,7 +202,7 @@ const loadUserData = (userName) => {
     const unixTime = new Date().getTime();
     const memoKey = `${userName}_memo_${unixTime}`;
     memoObjectGroup[memoKey] = new MemoClassObj(memoKey);
-    
+
   }
 }
 let memoList = {};
@@ -210,7 +210,7 @@ let userName;
 let locationInfo;
 const memoObjectGroup = {};
 
-const loginFormBox = document.querySelector(".form_box"); 
+const loginFormBox = document.querySelector(".form_box");
 const nameInput = loginFormBox.querySelector("input");
 const loginBtn = loginFormBox.querySelector("button");
 loginBtn.addEventListener("click", () => {
@@ -218,19 +218,4 @@ loginBtn.addEventListener("click", () => {
   userName = nameInput.value;
   loadUserData(userName);
 })
-
-// createMemo(memoKey);
-
-
-
-// const loadToDos = (key) => {
-  //   const ulToDo = document.querySelector(`#${key} ul`);
-  //   const savedToDos = localStorage.getItem(key);
-  //   toDoList = savedToDos !== null ? JSON.parse(savedToDos) : {};
-
-  //   for (const toDo in toDoList) {
-    
-    //     addToDo
-//   }
-// }
 
