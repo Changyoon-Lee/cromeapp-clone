@@ -3,14 +3,14 @@ import { variables } from "./classes.js";
 
 
 const loadLocationInfo = () => {
-  if (localStorage.getItem("locationInfo")) {
-    return JSON.parse(localStorage.getItem("locationInfo"));
+  if (localStorage.getItem(`locationInfo_${userName}`)) {
+    return JSON.parse(localStorage.getItem(`locationInfo_${userName}`));
   } else {
     return {}
   }
 }
 const saveLocationInfo = () => {
-  localStorage.setItem("locationInfo", JSON.stringify(locationInfo));
+  localStorage.setItem(`locationInfo_${userName}`, JSON.stringify(locationInfo));
 }
 const onMouseDown = (event) => {
   const textarea = event.target.parentElement.parentElement.parentElement;
@@ -176,21 +176,20 @@ class MemoClassObj {
     this.saveToDos();
   }
   setLocation() {
-    if (localStorage.getItem("locationInfo")) {
-      const locationInfo = JSON.parse(localStorage.getItem("locationInfo"));
-      console.log(locationInfo, locationInfo[this.memoKey]);
+    console.log(locationInfo);
       if (Object.keys(locationInfo[this.memoKey]).length) {
         this.memoDiv.style.top = locationInfo[this.memoKey].top;
         this.memoDiv.style.left = locationInfo[this.memoKey].left;
         console.log(locationInfo[this.memoKey].top,locationInfo[this.memoKey].left)
       }
-    }
+    
   }
 }
 
 const loadUserData = (userName) => {
   //1. localstroage에서 memeKey를 확인하여 user와 연관있는 것만 가져온다
   //2. 루프를 돌면서 하나씩 메모를 로딩시켜준다. (memoList에 추가도해줘)
+  locationInfo = loadLocationInfo(userName);
   for (const memoKey in localStorage) {//이렇게 for문 돌리면 안에 함수까지 다나오네.. 노답
     
     if (memoKey.startsWith(userName)) {
@@ -208,7 +207,7 @@ const loadUserData = (userName) => {
 }
 let memoList = {};
 let userName;
-const locationInfo = loadLocationInfo();
+let locationInfo;
 const memoObjectGroup = {};
 
 const loginFormBox = document.querySelector(".form_box"); 
