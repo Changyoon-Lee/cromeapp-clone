@@ -179,8 +179,8 @@ class MemoClassObj {
     if (localStorage.getItem("locationInfo")) {
       const locationInfo = JSON.parse(localStorage.getItem("locationInfo"));
       if (locationInfo[this.memoKey]) {
-        this.memoDiv.style.top = locationInfo.top;
-        this.memoDiv.style.left = locationInfo.left;
+        this.memoDiv.style.top = locationInfo[this.memoKey].top;
+        this.memoDiv.style.left = locationInfo[this.memoKey].left;
       }
     }
   }
@@ -192,7 +192,7 @@ const loadUserData = (userName) => {
   for (const memoKey in localStorage) {//이렇게 for문 돌리면 안에 함수까지 다나오네.. 노답
     
     if (memoKey.startsWith(userName)) {
-      console.log("기존데이터 로딩")
+      console.log("기존데이터 로딩", memoKey);
       memoObjectGroup[memoKey] = new MemoClassObj(memoKey);
     }
   }
