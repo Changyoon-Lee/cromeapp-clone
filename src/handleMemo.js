@@ -178,9 +178,11 @@ class MemoClassObj {
   setLocation() {
     if (localStorage.getItem("locationInfo")) {
       const locationInfo = JSON.parse(localStorage.getItem("locationInfo"));
-      if (locationInfo[this.memoKey]) {
+      console.log(locationInfo, locationInfo[this.memoKey]);
+      if (Object.keys(locationInfo[this.memoKey]).length) {
         this.memoDiv.style.top = locationInfo[this.memoKey].top;
         this.memoDiv.style.left = locationInfo[this.memoKey].left;
+        console.log(locationInfo[this.memoKey].top,locationInfo[this.memoKey].left)
       }
     }
   }
