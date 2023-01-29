@@ -176,12 +176,12 @@ class MemoClassObj {
     this.saveToDos();
   }
   setLocation() {
-    const locationInfo = JSON.parse(localStorage.getItem("locationInfo"))[this.memoKey];
-    
-    if (locationInfo) {
-      console.log(locationInfo, this.memoKey, "inininin");
-      this.memoDiv.style.top = locationInfo.top;
-      this.memoDiv.style.left = locationInfo.left;
+    if (localStorage.getItem("locationInfo")) {
+      const locationInfo = JSON.parse(localStorage.getItem("locationInfo"));
+      if (locationInfo[this.memoKey]) {
+        this.memoDiv.style.top = locationInfo.top;
+        this.memoDiv.style.left = locationInfo.left;
+      }
     }
   }
 }
