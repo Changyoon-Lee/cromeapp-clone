@@ -1,0 +1,276 @@
+@import "./reset.css";
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+
+.textarea {
+  border-radius: 5px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  width: 300px;
+  min-width: 300px;
+  height: 300px;
+  min-height: 300px;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  position: absolute;
+  /* resize가 적용이 계속 안돼는데, overflow:auto랑 세트로 적어줘야함 */
+  resize: both;
+  overflow: auto;
+  opacity: 0.8;
+}
+
+.textarea-controller {
+  position: absolute;
+  top: 0px;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 20px;
+  min-height: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px 5px;
+  color: #3c3c3c;
+}
+
+.textarea-controllerBar {
+  height: 100%;
+  flex: 1;
+  margin: 10px;
+}
+
+.textarea ul {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  position: absolute;
+  width: 100%;
+  top: 20px;
+  bottom: 30px;
+  overflow-x: hidden;
+}
+
+.textarea>div {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.buttons {
+  position: absolute;
+  bottom: 0px;
+  display: flex;
+  width: 100%;
+  justify-content: center;
+  min-height: 30px;
+  height: 30px;
+}
+
+i {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: none;
+  border: none;
+  transition: transform 0.3s;
+}
+
+i:hover {
+  cursor: pointer;
+  transform: scale(1.2);
+}
+
+.tiny-icon {
+  font-size: 6px;
+  color: red;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  font-size: 20px;
+  padding: 10px 0px;
+}
+
+li:focus-within {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.textarea-div {
+  word-break: normal;
+  /* overflow: hidden; */
+  width: 70%;
+  min-height: 24px;
+  line-height: 24px;
+}
+
+.textarea-div:focus {
+  outline: none;
+}
+
+.textarea-div[contenteditable]:empty::before {
+  content: "write your toDo";
+  color: gray;
+}
+
+.color-red {
+  color: rgb(250, 109, 109);
+}
+
+.color-blue {
+  color: rgb(119, 119, 255)
+}
+
+#infomation {
+  background-color: black;
+  width: 100%;
+  height: 100px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  font-weight: 600;
+  opacity: 0.8;
+}
+
+.input:checked+div {
+  color: white;
+}
+
+
+.hidden {
+  display: none;
+}
+
+/* for css 복붇하기 */
+.form_box {
+  position: fixed;
+  background-color: rgba(245, 245, 245, 0.817);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 99999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container {
+  position: relative;
+  width: 350px;
+  height: 500px;
+  border-radius: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  background: #ecf0f3;
+  box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+}
+
+.brand-logo {
+  height: 100px;
+  width: 100px;
+  background: url("/img/pngwing.com.png");
+  margin: auto;
+  border-radius: 50%;
+  box-sizing: border-box;
+  box-shadow: 7px 7px 10px #cbced1, -7px -7px 10px white;
+}
+
+.brand-title {
+  text-align: center;
+  margin-top: 40px;
+  font-weight: 900;
+  font-size: 1.8rem;
+  color: #1DA1F2;
+  letter-spacing: 1px;
+}
+
+.inputs {
+  text-align: left;
+  margin-top: 30px;
+}
+
+.form_box label,
+.form_box input,
+.form_box button {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: none;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.form_box label {
+  margin-bottom: 4px;
+  font-weight: 600;
+}
+
+.form_box input::placeholder {
+  color: gray;
+}
+
+.form_box input {
+  background: #ecf0f3;
+  padding: 10px;
+  padding-left: 20px;
+  height: 50px;
+  font-size: 14px;
+  border-radius: 50px;
+  box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px white;
+}
+
+.form_box button {
+  color: white;
+  margin-top: 40px;
+  background: #1DA1F2;
+  height: 40px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 900;
+  box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px white;
+  transition: 0.5s;
+}
+
+.form_box button:hover {
+  box-shadow: none;
+}
+
+.form_box a {
+  position: absolute;
+  font-size: 8px;
+  bottom: 4px;
+  right: 4px;
+  text-decoration: none;
+  color: black;
+  background: yellow;
+  border-radius: 10px;
+  padding: 2px;
+}
+
+/* butoton */
+.textarea button {
+  -webkit-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  -moz-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  -ms-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  -o-transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+  transition: all 200ms cubic-bezier(0.390, 0.500, 0.150, 1.360);
+
+  text-decoration: none;
+  border-radius: 2px;
+}
+
+.textarea button {
+  color: rgba(30, 22, 54, 0.6);
+  box-shadow: rgba(30, 22, 54, 0.4) 0 0px 0px 2px inset;
+}
+
+.textarea button:hover {
+  color: rgba(255, 255, 255, 0.85);
+  box-shadow: rgba(30, 22, 54, 0.7) 0 0px 0px 40px inset;
+}
