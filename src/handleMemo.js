@@ -177,7 +177,7 @@ class MemoClassObj {
   }
   setLocation() {
     console.log(locationInfo);
-      if (Object.keys(locationInfo).length && Object.keys(locationInfo[this.memoKey]).length) {
+      if (Object.keys(locationInfo).length && locationInfo[this.memoKey] && Object.keys(locationInfo[this.memoKey]).length) {
         this.memoDiv.style.top = locationInfo[this.memoKey].top;
         this.memoDiv.style.left = locationInfo[this.memoKey].left;
         console.log(locationInfo[this.memoKey].top,locationInfo[this.memoKey].left)
