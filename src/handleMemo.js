@@ -1,5 +1,5 @@
-import { memoHTML } from "./_components.js"
-import { variables } from "./_classes.js";
+import { memoHTML } from "./components.js"
+import { variables } from "./classes.js";
 
 
 const loadLocationInfo = () => {
