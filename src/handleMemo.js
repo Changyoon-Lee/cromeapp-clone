@@ -3,14 +3,17 @@ import { variables } from "./classes.js";
 
 
 const loadLocationInfo = () => {
-  return JSON.parse(localStorage.getItem("locationInfo"));
+  if (localStorage.getItem("locationInfo")) {
+    return JSON.parse(localStorage.getItem("locationInfo"));
+  } else {
+    return {}
+  }
 }
 const saveLocationInfo = () => {
   localStorage.setItem("locationInfo", JSON.stringify(locationInfo));
 }
-const onMouseDown = (event, info = "") => {
+const onMouseDown = (event) => {
   const textarea = event.target.parentElement.parentElement.parentElement;
-  const textareaControllerBar = event.target;
   const memoKey = textarea.id;
   if (event.which !== 1) {
     return;
