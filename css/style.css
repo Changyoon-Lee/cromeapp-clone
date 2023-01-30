@@ -1,12 +1,13 @@
 @import "./reset.css";
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+@import url("http://fonts.googleapis.com/earlyaccess/nanumgothic.css");
 
 * {
   box-sizing: border-box;
 }
 
 body {
-  font-family: "Malgun Gothinc";
+  font-family: 'Nanum Gothic';
   background-image:
     url("../img/wallpaperbetter.jpg");
 
@@ -94,7 +95,7 @@ i:hover {
 }
 
 .tiny-icon {
-  font-size: 6px;
+  font-size: 9px;
   color: red;
 }
 
@@ -325,7 +326,6 @@ li:focus-within {
   right: 4px;
   text-decoration: none;
   color: black;
-  background: yellow;
   border-radius: 10px;
   padding: 2px;
 }

@@ -40,5 +40,5 @@ function onGeoError() {
   alert("Can't find you. No weather for you.");
 }
 
-document.body.style.backgroundImage = "linear-gradient( rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3) ), url(https://p4.wallpaperbetter.com/wallpaper/344/958/356/windows-10-windows-10-anniversary-logo-hd-wallpaper-preview.jpg)";
+
 navigator.geolocation.getCurrentPosition(onGeoOk, onGeoError);
