@@ -51,7 +51,7 @@ const createMemo = (memoId) => {
   const memoDiv = document.createElement("div");
   memoDiv.style.backgroundColor = variables.randomColor;
   memoDiv.id = memoId;
-  memoDiv.className = "textarea";
+  memoDiv.className = "textarea animate__animated animate__zoomIn";
   memoDiv.innerHTML = memoHTML;
   const memoControllerBar = memoDiv.querySelector(".textarea-controllerBar");
   const memoController = memoControllerBar.parentElement;
@@ -70,7 +70,9 @@ const createMemo = (memoId) => {
 const deleteMemo = (event) => {
   const memoDiv = event.target.parentElement.parentElement.parentElement;
   const memoId = memoDiv.id;
-  memoDiv.remove()
+  memoDiv.className = "textarea animate__animated animate__zoomOut";
+  setTimeout(() => memoDiv.remove(), 2000)
+
   localStorage.removeItem(memoId);
 
   delete locationInfo[memoId]
@@ -82,6 +84,7 @@ const deleteMemo = (event) => {
 const lineElement = (key, toDo) => {
   const newLi = document.createElement("li");
   newLi.key = key;
+  newLi.className = "animate__animated animate__flipInX";
   const checkboxInput = document.createElement("input");
   checkboxInput.type = "checkbox";
   const textInput = document.createElement("div");
@@ -161,9 +164,8 @@ class MemoClassObj {
 
     const li = event.target.parentElement;
     const toDoKey = li.key;
-
-
-    li.remove();
+    li.className = "animate__animated animate__flipOutX";
+    setTimeout(() => li.remove(), 1000)
     delete memoList[this.memoKey][toDoKey];
     this.saveToDos();
   }
@@ -214,8 +216,11 @@ const loginFormBox = document.querySelector(".form_box");
 const nameInput = loginFormBox.querySelector("input");
 const loginBtn = loginFormBox.querySelector("button");
 loginBtn.addEventListener("click", () => {
-  loginFormBox.className = "hidden";
-  userName = nameInput.value;
-  loadUserData(userName);
+  loginFormBox.querySelector("div").classList.add("animate__animated", "animate__backOutDown");
+  setTimeout(() => {
+    loginFormBox.className = "hidden";
+    userName = nameInput.value;
+    loadUserData(userName);
+  }, 1000)
 })
 

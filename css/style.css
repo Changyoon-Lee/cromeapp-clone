@@ -174,7 +174,10 @@ li:focus-within {
 .brand-logo {
   height: 100px;
   width: 100px;
-  background: url("../img/pngwing.com.png");
+  background-image: url("https://1000logos.net/wp-content/uploads/2022/07/Logo-ATT.png");
+  background-position: center;
+  background-size: 90%;
+  background-repeat: no-repeat;
   margin: auto;
   border-radius: 50%;
   box-sizing: border-box;
